@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hiệu ứng CSS bài 2</title>
+	<meta charset="utf-8">
+	<style>
+		
+		.note{
+
+			width: 60%;
+			float: left;
+			margin: 0px;
+			
+		}
+		.note1, .note2, .note3{
+
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		img{
+			width: calc((60%-20px)/3);
+			height: 100px;
+
+		}
+		img:hover{
+			transition: 0.1s;
+			transform: scale(1.2);
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="note">
+		<div class="note1">
+			<img src="image/anh1.jpg">
+			<img src="image/anh2.jpeg">
+			<img src="image/anh3.jpeg">
+		</div>
+		<div class="note2">
+			<img src="image/anh4.JPG">
+			<img src="image/anh5.jpg">
+			<img src="image/anh6.jpg">
+		</div>
+		<div class="note3">
+			<img src="image/anh7.jpg">
+			<img src="image/anh8.jpeg">
+			<img src="image/anh9.jpg">
+		</div>
+
+	</div>
+</body>
+</html>

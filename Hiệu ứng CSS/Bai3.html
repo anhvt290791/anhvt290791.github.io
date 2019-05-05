@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hiệu ứng bằng CSS bài 3</title>
+	<meta charset="utf-8">
+	<style>
+		.leftside{
+			left: 100px;
+			transform: rotate(330deg);
+		}
+		 .rightside{
+		 	right: 100px;
+		 	transform: rotate(30deg);
+		 }
+		 .traitim div
+		{
+		 	background-color: red;
+		 	height: 126px;
+		 	width: 71px;
+		 	border-radius: 50%;
+		 	top: 40px;
+			position: absolute;
+
+		 }
+		 .traitim{
+		 	height: 320px;
+		 	width: 320px;
+		 	z-index: 1;
+		 	transform: translate(-50%,-50%);
+		 	top: 50%;
+			left: 50%;
+			position: absolute;
+			animation: traitim 1s ease infinite
+
+		 }
+		 @keyframes traitim {
+		60% {
+		transform: translate(-50%,-50%) scale(0.5,0.5)
+		}
+		90% {
+		transform: translate(-50%,-50%) scale(0.8,0.8)
+		}
+		100% {
+		transform: translate(-50%,-50%) scale(1,1)
+		}
+		}
+
+	</style>
+</head>
+<body>
+	<div class="traitim">
+		<div class="leftside"></div>
+		<div class="rightside"></div>
+	</div>
+</body>
+</html>

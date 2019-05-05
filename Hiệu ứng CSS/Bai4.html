@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hiệu ứng bằng CSS bài 4</title>
+	<meta charset="utf-8">
+	<style>
+		div{
+			width: 170px;
+			height: 50px;
+		}
+		h1{
+		text-align: center;	
+		}
+		.note2{
+			padding-top: 10px;
+			text-align: center;
+			animation-name: change;
+        	animation-duration: 2s;
+        	animation-iteration-count: infinite;
+        	color: white;
+
+        }
+        	
+		
+		@keyframes change{
+			0% {background-color: green; }
+			50% {background-color: orange; transform: translate(0px, 5px);}
+			100% {background-color: purple; }
+		}
+		.note2:after {
+		
+  		content:"";
+  		animation: change2 2s infinite;
+		}
+		@keyframes change2{
+			0% {content: "LEARNING";}
+			50% {content: "CODING"; }
+			100% {content: "TECHING";}
+		}
+
+	</style>
+
+</head>
+<body>
+<div>
+	<h1>START</h1>
+	<h1 class="note2"></h1>
+	<h1>TODAY</h1>
+</div>
+</body>
+</html>
