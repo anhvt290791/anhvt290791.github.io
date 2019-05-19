@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<meta charset="utf-8">
+	<style>
+	ul{
+		padding: 0px;
+		position: fixed; /*Cho menu cố định 1 vị trí*/
+  
+	}
+	ul li > a:hover{
+		border-bottom: solid 2px #65509e;
+	}
+		ul > li{
+			float: left;
+			list-style: none;
+			
+		}
+		ul li ul li{
+			float: none;
+		}
+		ul li > a{
+			display: block;
+			padding: 20px;
+			text-decoration: none;
+			color: black;
+		}
+		ul li a:hover{
+			color: #8b39b8;
+		}
+		ul li ul li{
+		padding: 0px;
+		}
+		.submenu, .sub1{
+			display: none;
+		}
+
+		li:hover .submenu,
+		li:hover .sub1{
+			display: inline-block;
+			border: solid 1px #f2f2f2;
+			background-color: white;
+
+			
+
+		}
+		li a > .sub1{
+			padding: 0px;
+		}
+		li:hover .sub1{
+			width: 530px;
+			height: 200px;
+		}
+		li:hover .submenu{
+			width: 76px;
+			height: 105px;
+			padding-left: 15px;
+		}
+
+		.sub1 > li{
+			float: left;
+			padding: 20px;
+		}
+		ul li ul li > a{
+			padding: 10px 0px;
+		}
+
+	</style>
+</head>
+<body>
+	<ul>
+		<li><a href="">#Zingchart</a>
+			<ul class="sub1">
+				<b><li>ZINGCHART</b>
+					<ul>
+						<li><a href="">Bài hát</li></a>
+						<li><a href="">MV</li></a>
+					</ul>
+				</li>
+				<b><li>TUẦN</b>
+					<ul>
+						<li><a href="">Bài hát</li></a>
+						<li><a href="">MV</li></a>
+						<li><a href="">Album</li></a>
+					</ul>
+				</li>
+				<b><li>US-UK CHART</b>
+					<ul>
+						<li><a href="">Bài hát</li></a>
+						<li><a href="">MV</li></a>
+						<li><a href="">Album</li></a>
+					
+					</ul>
+				</li>
+				<b><li>KPOP CHART</b>
+					<ul>
+						<li><a href="">Bài hát</li></a>
+						<li><a href="">MV</li></a>
+					<li><a href="">Album</li></a>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+		<li><a href="">Top 100</a>
+			<ul class="submenu">
+				<li><a href="">Việt Nam</li></a>
+				<li><a href="">Âu Mỹ</li></a>
+				<li><a href="">Châu Á</li></a>
+			</ul>
+		</li>
+		<li><a href="">Chủ đề</a></li>
+		<li><a href="">Video</a></li>
+		<li><a href="">Album</a></li>
+		<li><a href="">Nghệ Sĩ</a></li>
+		<li><a href="">VIP</a></li>
+	</ul>
+</body>
+</html>

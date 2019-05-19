@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<title>Hiệu ứng CSS bài 2</title>
@@ -7,24 +7,29 @@
 		
 		.note{
 
-			width: 60%;
+			max-width: 600px;
 			float: left;
 			margin: 0px;
+			transition: all 0.5s ease-in-out;
 			
 		}
 		.note1, .note2, .note3{
 
 			padding-left: 10px;
 			padding-right: 10px;
+			margin: auto;
+			
 		}
 		img{
 			width: calc((60%-20px)/3);
 			height: 100px;
+			
 
 		}
 		img:hover{
-			transition: 0.1s;
+			
 			transform: scale(1.2);
+			border: solid 5px white;
 		}
 	</style>
 </head>

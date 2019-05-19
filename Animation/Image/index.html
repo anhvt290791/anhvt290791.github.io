@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animation</title>
+	<meta charset="utf-8">
+	<style>
+		body{
+			padding-left: 0px;
+		}
+		h1{
+			color: white;
+			background-color: purple;
+			text-align: center;
+			animation: title 10s ease infinite;
+			position: relative;
+
+
+		}
+		@keyframes title{
+			20%{color: black; background-color: red}
+			50%{color: white; background-color: orange}
+		}
+		ul{
+			width: 100%;
+			
+		}
+		li{
+			float: left;
+			list-style: none;
+		}
+		img{
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		p{
+			position: absolute;
+			top: 50px;
+			right: 20px;
+			color: green;
+			animation: fadeIn 5s ease infinite;
+			animation: fadeOut 5s ease infinite;
+		}
+		@keyframes fadeIn{
+			20%{opacity: 0;}
+			50%{opacity: 1;}
+			100%{opacity: 0;}
+		}
+		@keyframes fadeOut{
+			20%{right: -20px; opacity: 0;}
+			50%{right: 50px; opacity: 1;}
+			100%{right: 200px; opacity: 0;}
+		}
+	</style>
+</head>
+<body>
+<h1>SẢN PHẨM DƯỠNG DA</h1></br></br>
+<p>Liên hệ: Vũ Anh &lt;0988888888&gt;</p>
+<div>
+	<ul>
+		<li><a href=""><img src="anh1.png"</a></li>
+		<li><a href=""><img src="anh2.jpg"</a></li>
+		<li><a href=""><img src="anh3.jpg"</a></li>
+	</ul>
+</div>
+</body>
+</html>
