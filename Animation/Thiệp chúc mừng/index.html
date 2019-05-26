@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animation Thiệp chúc mừng</title>
+	<style>
+		img{
+			margin-top: 20px;
+			width: 50%;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			animation: hieuung 1s ease infinite;
+		}
+		@keyframes hieuung{
+			0%{opacity: 0;}
+			50%{opacity: 0.2;}
+			100%{opacity: 0.4;}
+		}
+		div{
+			background-color: pink;
+			position: relative;
+		}
+		h1{
+			font-family: cursive;
+			font-size: 15px;
+			color: white;
+			text-align: center;
+			position: absolute;
+			animation: text 5s ease infinite;
+		}
+		@keyframes text{
+			0%{right: 10px;}
+			10%{right: 50px;}
+			20%{right: 100px;}
+			30%{right: 120px;}
+			50%{right: 150px;}
+			70%{right: 170px;}
+			100%{right: 200px;}
+		}
+	</style>
+</head>
+<body>
+	<div>
+	<h1>HAPPY BITRHDAY TO YOU</h1>
+	<iframe src="Image/Happybirthdaytoyou.mp3" allow="autoplay" style="display:none"></iframe>
+	<img src="Image/birthday.gif" alt="anhsinhnhat">
+	</div>
+</body>
+</html>

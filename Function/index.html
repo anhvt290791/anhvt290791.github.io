@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bai 1</title>
+	<meta charset="utf-8">
+	<style>
+		p{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+<h1>BÀI TẬP TÍNH BÌNH PHƯƠNG CỦA MỘT SỐ</h1>
+<script>
+
+//Bai1: Tinh binh phuong cua 1 so
+
+	function square(number){
+			return number * number;
+	}
+			document.write("<p>Bình phương của 3 là:</p>" + square(3));
+
+//Bai2: Tinh the ky cua mot nam: 
+
+	function century(y){
+			return Math.ceil(y / 100);
+	}
+			document.write("<p>Thế kỷ của năm 2019 là: </p>" + century(2019));
+
+//Bai 3: Cat chuoi:
+
+	function cutarray(a){
+			return a.substring(0, 9);
+	}
+
+			document.write("<p>Chuỗi cần lấy là: </p>" + cutarray("Xin chào các bạn. Bài học hôm nay của chúng ta về Javascript là Function") + "...");
+
+//Bai4: Viet hoa ky tu dau tien cua chuoi:
+
+	function transformArray(b){
+			return b.charAt(0).toUpperCase() + b.slice(1);
+	}
+			document.write("<p>Chuỗi mới là: </p>" + transformArray("hôm nay trời đẹp quá"));
+
+//Bai 5: Tim so nho nhat trong chuoi:
+
+	function getminnumber(c){
+			return Math.min.apply(Math, c);
+	}
+			document.write("<p>Số nhỏ nhất trong mảng là: </p>" + getminnumber([-1, 0, 4, 8, 500, -5]));
+
+//Bai 6: 
+	var list = ["Anh", "Thanh", "Ban", "Lan"];
+	list.sort(function(a,b){return a - b});
+
+			console.log(list.sort())
+			document.write("<p>Danh sách sau khi đã sắp xếp theo thứ tự như sau: </p>" + list.join('</br>'));
+	
+</script>
+</body>
+</html>
