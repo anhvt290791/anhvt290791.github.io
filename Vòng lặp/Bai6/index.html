@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vòng lặp bài 6</title>
+	<meta charset="UTF-8">
+	<style>
+		.c1{
+			color: red;
+		}
+		.c2{
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+
+<script>
+	document.write('Các số chẵn và lẻ với các màu khác nhau như sau:' + '</br>');
+		var result = '';
+		for (i = 0; i <=100; i++){
+			if(i % 2 == 0){
+				result= '<span class="c1">' + i+ '</br>'+'</span>'
+			
+			}
+			else{
+				result= '<span class="c2">' + i+ '</br>'+'</span>'
+			}
+			document.write(result);
+			
+		}
+			
+			
+		
+	
+		
+</script>
+</body>
+</html>
