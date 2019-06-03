@@ -1,0 +1,59 @@
+<html>
+<head></head>
+<body>
+<h1>Điều kiện rẽ nhánh phần 1</h1>
+
+<script type="text/javascript">
+  //Lession 1: Check input is number or not
+  function checkNumber(num){
+    var num;
+ if(isNaN(num)){
+	document.write(num + " is not a number <br/>");
+ }else{
+	document.write(num + " is a number <br/>");
+ }
+  }
+  checkNumber(100);
+  checkNumber('Vũ Anh');
+  
+  //Lession 2: Check Giaithua
+  function tinhGiaiThua(a){
+  	var a;
+  	if(a<0){document.write(a + ' không lớn hơn hoặc bằng 0 <br/>');
+  }else{
+  		for(var i=1; a>=1; a--){
+  			i = i * a;
+
+  		}
+  		return i;
+  	}
+  	
+  	}
+	document.write(tinhGiaiThua(-1)+'</br>');
+	document.write('Giai thừa của 6 là: '+ tinhGiaiThua(6)+'</br>');
+
+	//Lession 3: 
+	
+	function mangChan(){
+	var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+	var newArr=[];
+	for (var i=0; i<arr.length; i++){
+	if(arr[i] % 2 ==0){
+		newArr[i] = arr[i];
+		newArr.sort(function(a,b){return b-a});
+	
+}
+
+}
+	document.write('Mảng số chẵn mới sau khi sắp xếp là: ' + newArr.join(' '));
+}
+	mangChan();
+
+
+
+
+
+</script>
+
+</body>
+</html>
