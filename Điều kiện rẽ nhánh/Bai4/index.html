@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Điều kiện rẽ nhánh bài 4</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		table, tr, th, td{
+			border: 1px solid black;
+			width: 300px;
+			text-align: center;
+		}
+		div{
+			width: 300px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<table>
+<tr>
+	<td>UserName</td>
+	<td>
+		<input id="username" type="text" name="name" onclick="check()">
+	</td>
+	<td>
+		<div id="z-username"></div>
+	</td>
+	
+</tr>
+<tr>
+	<td>PassWord</td>
+	<td>
+		<input id="password" type="text" name="password" onclick="check()">
+	</td>
+	<td>
+		<div id="z-password"></div>
+	</td>
+</tr>
+<tr>
+	<td>ConfirmPassWord</td>
+	<td>
+		<input id="confirmpassword" type="text" name="confirmpassword" onclick="check()">
+	</td>
+	<td>
+		<div id="z-confirmpassword"></div>
+	</td>
+</tr>
+</table>
+<script type="text/javascript">
+	function check(){
+		//1. Get data
+		var data = new Array();
+		data[0] = document.getElementById('username').value;
+		data[1] = document.getElementById('password').value;
+		data[2] = document.getElementById('confirmpassword').value;
+		
+
+		//2. Check data
+		
+			
+			if(data[0]==""){
+				alert("Bạn chưa nhập tên đăng nhập");
+			}
+			else if(data[0].length>20){
+				alert("Bạn không được nhập tên đăng nhập quá 20 ký tự");
+			}
+
+			else if(data[1]==""){
+				alert("Bạn chưa nhập mật khẩu");
+		}
+		
+			else if(data[1].length<6 || data[1].length>32){
+			alert("Mật khẩu phải có độ dài từ 6 đến 32 ký tự");
+		}
+			else if(data[2]==""){
+				alert("Bạn chưa xác nhận mật khẩu");
+}
+			else if(data[1]!=data[2]){
+				alert("Mật khẩu xác nhận chưa đúng. Xin hãy xác nhận lại!");
+			}else{
+				alert("Bạn đã đủ điều kiện truy cập vào trang web");
+			}
+}
+</script>
+</body>
+</html>
