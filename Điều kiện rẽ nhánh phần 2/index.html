@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Điều kiện rẽ nhánh phần 2 Bài 1</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<script type="text/javascript">
+	//Lesson 1: Get current date month year
+	function getDateMonthYear(){
+	var now = new Date();   // Lấy thời gian hiện tại
+	var date = now.getDate();   // Lấy ngày từ thời gian hiện tại
+	var month = now.getMonth() + 1;   // Lấy tháng từ thời gian hiện tại. Do tháng trong javascript tính từ 0 - 11 nên phải +1
+	var year = now.getFullYear();   // Lấy năm (đầy đủ 4 số) từ thời gian hiện tại
+	return now;
+	}
+	document.write("Ngày tháng năm hiện tại là:" + getDateMonthYear() + '</br>');
+	//Lesson 2
+	function transferScore(a){
+		if(a >=0 && a < 4){
+			document.write("Điểm kiểm tra môn lập trình web là: Điểm F");
+		}else if(a >=4 && a < 5.5){
+			document.write("Điểm kiểm tra môn lập trình web là: Điểm D");
+		}else if(a >= 5.5 && a < 7){
+			document.write("Điểm kiểm tra môn lập trình web là: Điểm C");
+		}else if(a >= 7 && a < 8.5){
+			document.write("Điểm kiểm tra môn lập trình web là: Điểm B");
+		}else if(a >=8.5 && a <= 10){
+			document.write("Điểm kiểm tra môn lập trình web là: Điểm A");
+		}
+		
+	}
+	transferScore(8.5);
+	document.write('<br>');
+
+	//Lesson 3
+
+	function sayHello(code) {
+	var arrHellos = {
+		"+86" : "你好世界",
+		"+33" : "Bonjour monde",
+		"+49" : "Hallo Welt",
+		"+81" : "こんにちは世界",
+		"+7" : "Здравствуй, мир",
+	};
+	return arrHellos[code];
+}
+	document.write(sayHello('+7'));
+	document.write('<br>')
+
+//Lesson 4
+
+	var arr = [];
+	function checkArr(arr){
+
+		
+		for (var i = 0; i < arr.length; i++){
+			if (arr[i] == "true"){
+				document.write("Giá trị true xuất hiện lần đầu trong mảng ở vị trí: " + i);
+				return;
+			}
+				
+			}
+		}
+	
+	document.write(checkArr(["false", "false", "false", "true", "false"]));
+</script>
+</body>
+</html>
