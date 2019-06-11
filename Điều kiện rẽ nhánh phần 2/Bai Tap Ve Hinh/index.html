@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Bài tập vẽ hình</title>
+</head>
+<body>
+	<script>
+		//Bai 3: 
+
+	function tamGiacNguoc(height){
+		for(let i = 1; i <= height; i++){
+			for(let j=1; j<=2*height-1; j++){
+				if(i==1){
+					document.write("*");
+				}
+				else if(j<i || j>2*height-i){
+					document.write("&ensp;");
+				}
+				else{
+					document.write("*");
+				}
+				
+			}
+			document.write('</br>');
+		}
+	
+	}
+	tamGiacNguoc(3);
+
+	//Bai 4: 
+
+	function hinhChuX(height){
+		for(let i = 1; i <= height; i++){
+			for(let j=1; j<=height; j++){
+				if(j==i || j==height-i+1){
+					document.write("*");
+				}
+				else{
+					document.write("&ensp;");
+				}
+				
+			}
+			document.write('</br>');
+		}
+	
+	}
+	hinhChuX(5);
+	document.write('<br>');
+
+	//Bai 5:
+	function hinhCButterfly(height){
+		for(let i = 1; i <=height/2; i++){
+			for(let j=1; j<=height; j++){
+				if(j<=i|| j>height-2-i){
+					document.write("*");
+				}
+				else{
+					document.write("&ensp;");
+				}
+				
+			}
+			document.write('</br>');
+		}
+	
+	}
+	hinhCButterfly(5);
+
+	</script>
+</body>
+</html>
