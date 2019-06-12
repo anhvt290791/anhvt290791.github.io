@@ -13,9 +13,36 @@
 	var date = now.getDate();   // Lấy ngày từ thời gian hiện tại
 	var month = now.getMonth() + 1;   // Lấy tháng từ thời gian hiện tại. Do tháng trong javascript tính từ 0 - 11 nên phải +1
 	var year = now.getFullYear();   // Lấy năm (đầy đủ 4 số) từ thời gian hiện tại
-	return now;
+	
+	
+	document.write("Ngày tháng năm hiện tại là:" + date + month + year + '</br>');
+	
+		switch (month) {
+  case 1:
+  case 2:
+  case 3:
+    document.write("</br>Mùa Xuân" + '</br>');
+    break;
+  case 4:
+  case 5:
+  case 6:
+    document.write("</br>Mùa Hạ"+ '</br>');
+    break;
+  case 7:
+  case 8:
+  case 9:
+    document.write("</br>Mùa Thu" +'</br>');
+    break;
+  case 10:
+  case 11:
+  case 12:
+    document.write("</br>Mùa Đông" +'</br>');
+    break;
 	}
-	document.write("Ngày tháng năm hiện tại là:" + getDateMonthYear() + '</br>');
+	
+}
+
+getDateMonthYear();
 	//Lesson 2
 	function transferScore(a){
 		if(a >=0 && a < 4){
@@ -66,15 +93,15 @@
 	
 	document.write(checkArr(["false", "false", "false", "true", "false"]));
 
-	//Bài vẽ hình 2
-	function vehinh2(heigth){
-  let result = "";
-  for(i = height; i>0; i = i-1){
-    result = result + "*".repeat(i) + "<br>"
-  }
-  document.write("</pre" + result + "</pre>");
-}
-	document.write(vehinh2(5));
+// 	//Bài vẽ hình 2
+// 	function vehinh2(heigth){
+//   let result = "";
+//   for(i = height; i>0; i = i-1){
+//     result = result + "*".repeat(i) + "<br>"
+//   }
+//   document.write("</pre" + result + "</pre>");
+// }
+// 	document.write(vehinh2(5));
 </script>
 </body>
 </html>

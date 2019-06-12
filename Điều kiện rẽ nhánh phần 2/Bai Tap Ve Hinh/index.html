@@ -48,22 +48,33 @@
 	document.write('<br>');
 
 	//Bai 5:
-	function hinhCButterfly(height){
-		for(let i = 1; i <=height/2; i++){
-			for(let j=1; j<=height; j++){
-				if(j<=i|| j>height-2-i){
-					document.write("*");
-				}
-				else{
-					document.write("&ensp;");
-				}
-				
-			}
-			document.write('</br>');
-		}
-	
-	}
-	hinhCButterfly(5);
+	function printButterfly(n){
+  let str = '';
+  let star = 1;
+  let space = n-2;
+//Nửa trên
+  for (let i=0; i<(n-1)/2; i++){
+  str +='*'.repeat(star) + ' '.repeat(space) + '*'.repeat(star) + '</br>';
+  star ++;
+  space -= 2;
+}
+ // Nửa giữa 
+    str+= '*'.repeat(n) + '</br>';
+  
+
+//Nửa dưới
+  star =(n-1)/2;
+  space = 1;
+  for (let i = 0; i< (n-1)/2; i++){
+  str += '*'.repeat(star) + ' '.repeat(space) + '*'.repeat(star) + '</br>';
+  star --;
+  space +=2;
+}
+  document.write('<pre>' + str + '</pre>');
+}
+  
+
+printButterfly(7);
 
 	</script>
 </body>
