@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Creat a calculator like IOS app</title>
+        <meta charset="utf-8">
+        <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto&display=swap);
+        body{
+            margin-left: 0px;
+            font-family: 'Roboto', sans-serif;
+        }
+        #calc-parent{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 208px;
+        }
+        .calcbtncolum{
+            background-color: silver;
+            color: black;
+            width: 50px;
+            height: 45px;
+            border: 1px solid gray;
+            text-align: center;
+            cursor: pointer;
+            font-size: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calcbtncolumspecial{
+            background-color: orange;
+            color: white;
+            width: 50px;
+            height: 45px;
+            border: 1px solid gray;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .row1{
+            width: 208px;
+            text-align: center;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+        }
+        .row{
+           display: table-cell;
+            width: 208px;
+        }
+
+        
+        .colum{
+            display: table-cell;
+            width: 208px;
+        }
+        #calc-zero{
+            width: 102px;
+            border-bottom-left-radius: 7px;
+        }
+        #calc-equal{
+            border-bottom-right-radius: 7px;
+        }
+        #cal-display{
+            height: 80px;
+            color: white;
+            text-align: right;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+            border-top: 1px solid gray;
+            font-size: 48px;
+            background-color: #383838;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 12px;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            padding-bottom: 0px;
+        }
+        #calc-clear, #calc-backspace{
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="calc-parent">
+            <div class="row">
+                <div class="colum" id="cal-display">0</div>
+            </div>
+            <div class="row1">
+                <div class="calcbtncolum" id="calc-clear">AC</div>
+                <div class="calcbtncolum" id="calc-backspace">+/-</div>
+                <div class="calcbtncolum" id="calc-devide">%</div>
+                <div class="calcbtncolumspecial" id="calc-devide2">&divide;</div>
+            </div>
+            <div class="row1">
+                <div class="calcbtncolum" id="calc-seven">7</div>
+                <div class="calcbtncolum" id="calc-eight">8</div>
+                <div class="calcbtncolum" id="calc-nine">9</div>
+                <div class="calcbtncolumspecial" id="calc-multiply">&times;</div>
+            </div>
+            <div class="row1">
+                <div class="calcbtncolum" id="calc-four">4</div>
+                <div class="calcbtncolum" id="calc-five">5</div>
+                <div class="calcbtncolum" id="calc-six">6</div>
+                <div class="calcbtncolumspecial" id="calc-minus">&minus;</div>
+            </div>
+            <div class="row1">
+                <div class="calcbtncolum" id="calc-one">1</div>
+                <div class="calcbtncolum" id="calc-two">2</div>
+                <div class="calcbtncolum" id="calc-three">3</div>
+                <div class="calcbtncolumspecial" id="calc-plus">+</div>
+            </div>
+            <div class="row1">
+                <div class="calcbtncolum" id="calc-zero">0</div>
+                <div class="calcbtncolum" id="calc-decima">.</div>
+                <div class="calcbtncolumspecial" id="calc-equal">=</div>
+            </div>
+        </div>
+    
+    <script>
+        var oneBtn = document.getElementById('calc-one');
+        var twoBtn = document.getElementById('calc-two');
+        var threeBtn = document.getElementById('calc-three');
+        var fourBtn = document.getElementById('calc-four');
+        var fiveBtn = document.getElementById('calc-five');
+        var sixBtn = document.getElementById('calc-six');
+        var sevenBtn = document.getElementById('calc-seven');
+        var eightBtn = document.getElementById('calc-eight');
+        var nineBtn = document.getElementById('calc-nine');
+        var zeroBtn = document.getElementById('calc-zero');
+
+        var decimaBtn = document.getElementById('calc-decima');
+        var clearBtn = document.getElementById('calc-clear');
+        var displayElement = document.getElementById('cal-display');
+
+        var calcColumBtns = document.getElementsByClassName('calcbtncolum');
+        var calcColumSpecialBtns = document.getElementsByClassName('calcbtncolumspecial');
+
+        var displayValue = '0';
+        var pendingValue;
+        var evalStringArray = [];
+
+
+        
+        var updateDisplayValue = (clickObj)=> {
+            var btnText = clickObj.target.innerText;
+            if(displayValue === '0')
+            displayValue = '';
+            displayValue += btnText;
+            displayElement.innerText = displayValue;
+        }
+        
+        
+
+        
+        var perfomValue = (clickObj) => {
+            var perform = clickObj.target.innerText;
+            
+            switch(perform){
+                case ('+'):
+                    
+                    pendingValue = displayValue;
+                    displayValue = '';
+                    displayElement.innerText = displayValue;
+                    evalStringArray.push(pendingValue);
+                    evalStringArray.push('+');
+                    break;
+
+                case ('−'):
+                    pendingValue = displayValue;
+                    displayValue = '';
+                    displayElement.innerText = displayValue;
+                    evalStringArray.push(pendingValue);
+                    evalStringArray.push('−');
+                   break;
+
+                case ('×'):
+                    pendingValue = displayValue;
+                    displayValue = '';
+                    displayElement.innerText = displayValue;
+                    evalStringArray.push(pendingValue);
+                    evalStringArray.push('*');
+                    break;
+                
+                case ('÷'):
+
+                    pendingValue = displayValue;
+                    displayValue = '';
+                    displayElement.innerText = displayValue;
+                    evalStringArray.push(pendingValue);
+                    evalStringArray.push('/');
+                    break;
+                case ('='):
+                    evalStringArray.push(displayValue);
+                    var evaluation = eval(evalStringArray.join(' '));
+                    displayValue = evaluation + ' ';
+                    displayElement.innerText= displayValue;
+                    evalStringArray = [];
+                  break;
+
+                default:
+                break;
+            }
+        }
+        for (let i=0; i< calcColumBtns.length; i++){
+            calcColumBtns[i].addEventListener('click', updateDisplayValue, false);
+        }
+        for (let i=0; i< calcColumSpecialBtns.length; i++){
+            calcColumSpecialBtns[i].addEventListener('click', perfomValue, false);
+        }
+        
+        clearBtn.onclick = () =>{
+            displayValue = '0';
+            displayElement.innerText = displayValue;
+        }
+
+        decimaBtn.onclick = () => {
+            if(!displayValue.includes('.'))
+                displayValue += '.';
+                displayElement.innerHTML = displayValue;
+            
+        }
+
+</script>
+</body>
+</html>

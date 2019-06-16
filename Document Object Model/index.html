@@ -25,54 +25,52 @@
 		//Lesson 2
 
 		function changeBgColor(color){
-			if(color=="blue"){
-				document.body.style.backgroundColor = "blue";
-			}
-			else if(color=="yellow"){
-				document.body.style.backgroundColor = "yellow";
-			}
-			else if(color=="red"){
-				document.body.style.backgroundColor = "red";
-			}
-			else{
-				return;
-			}
+			
+				document.body.style.backgroundColor = color;
+			
 		}
 		changeBgColor('red');
 		//Lesson 3
 
-		function copyContent(p1, p2){
-			var p1= document.getElementById('p1');
-			var p2= document.getElementById('p2');
-			p1.textContent = 'Tuổi thơ của tôi đã trải dài trên vùng đất cư xá, trải dài trên con sông Sài Gòn. Con sông ôm chặc cù lao Thanh Đa và ngày ngày dòng sông hiền hoà,nhẫn nại chăm mớm cho vùng đất này biết bao là phù sa,nắng vàng gió mát.Nó như bầu sữa căng đầy của người mẹ thấm truyền từng giọt vào cơ thể của con.';
+		function copyContent(x, y){
+			const p1= document.getElementById(x);
+			const p2= document.getElementById(y);
+			p1.innerHTML = p2.innerHTML;
 		}
-		copyContent();
+		copyContent("p2", "p3");
 
 		//Lesson 4:
 
-		function changeFontSize(p1){
-			document.getElementById('p1').style.fontSize = "13px";
-			document.getElementById('p2').style.fontSize = "13px";
-			document.getElementById('p3').style.fontSize = "13px";
+		function changeFontSize(x){
+			document.getElementById('p1').style.fontSize = x +'px';
+			document.getElementById('p2').style.fontSize = x +'px';
+			document.getElementById('p3').style.fontSize = x +'px';
 		}
-		changeFontSize();
+		changeFontSize(9);
 		//Leson 5
 
-		function increaseFontSize(p1){
+		function increaseFontSize(){
 			var p1 = document.getElementById('p1');
-			var getinfo = window.getComputedStyle(p1).getPropertyValue('font-size');
+			let getinfo = window.getComputedStyle(p1).getPropertyValue('font-size');
 			document.write(getinfo);
-			p1.style.fontSize = getinfo + "1px";
+			
+			let currentSize = parseFloat(getinfo);
+			if(currentSize <= 29){
+				p1.style.fontSize = (currentSize + 1) + 'px';
+			}
 
 		}
 		increaseFontSize();
 
 		//Lesson 6
-		function decreaseFontSize(p2){
+		function decreaseFontSize(){
 			var p2 = document.getElementById('p2');
-			var getinfo = window.getComputedStyle(p2).getPropertyValue('font-size');
+			let getinfo = window.getComputedStyle(p2).getPropertyValue('font-size');
 			
-			p2.style.fontSize = getinfo - '1px';
+			let currentSize  = parseFloat(getinfo);
+			if(currentSize >= 11){
+				p2.style.fontSize = (currentSize-1) + 'px';
+			}
 
 		}
 		decreaseFontSize();
