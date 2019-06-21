@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+</head>
+	<body>
+<div class="wrapper">
+	<form action="success.html" id="form-register">
+		<input type="text" name="name" id="name" placeholder="Họ tên"/>
+		<div class="error"></div>
+		<input type="date" name="birthday" id="birthday" aria-placeholder="Ngày sinh"/>
+		<div class="sex-wrapper">
+			<span>Giới tính</span>
+			<div class="sex">
+				<input type="radio" name="sex" value="male" id="male"/> 
+				<label for="male">Nam</label>
+			</div>
+			<div class="sex">
+				<input type="radio" name="sex" value="female" id="female"/>
+				<label for="female">Nữ</label>
+			</div>
+			<div class="sex">
+				<input type="radio" name="sex" value="other" id="other"/> 
+				<label for="other">Khác</label>
+			</div>
+		</div>
+		<div>
+		<input type="text" name="address" id="address" placeholder="Địa chỉ"/>
+		<input type="text" name="phone" id="phone" placeholder="Điện thoại"/>
+		<input type="email" name="email" id="email" placeholder="Email"/>
+		<input type="password" name="password" id="password" placeholder="password"/>
+		</div>
+		<div class="button">
+			<input type="submit" value="Register" name="" id=""/>
+			<input type="reset" value="Reset" name="" id=""/>
+		</div>
+
+	</form>
+</div>
+
+<script>
+	$('#form-register').on('submit',validatedata)
+		function validatedata(){
+			let isValid = true
+			if($('#name').val().trim() ===''){
+				$('#name').next('.error').text('name is empty')
+				isValid = false
+		}
+		else{
+			$('#name').next('.error').text('')
+		}
+			if($('#email').val().trim() ===''){
+				$('#email').next('.error').text('email is empty')
+				isValid = false
+		}
+			
+			else{
+				$('#email').next('.error').text('')
+			}
+			return isValid
+			}
+
+	
+</script>
+</body>
+</html>
