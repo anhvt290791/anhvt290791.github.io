@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>About Me</title>
+</head>
+<body>
+  <h1>About Me</h1>
+  
+  <ul>
+    <li>Nickname: <span id="nickname"></span>
+    <li>Favorites:  <span id="favorites"></span>
+    <li>Hometown: <span id="hometown"></span>
+   </ul>
+
+  <script>
+  
+  		
+  		var change = document.getElementsByTagName('body')[0];
+  		change.setAttribute("font-family", "Arial, sans-serif");
+  	
+
+  	
+  		var inform = document.getElementsByTagName('nickname');
+  		inform.innerText = "Vũ Anh";
+  		var inform2 = document.getElementById('favorites');
+  		inform2.innerText = "Du lịch";
+  		var inform3 = document.getElementById('hometown');
+  		inform3.innerText = "Hải Dương";
+  	
+  		var class1 = document.getElementsByTagName('li')[0];
+  			class1.setAttribute('class', 'listitem');
+  		var changeColor = document.getElementsByClassName('listitem')[0];
+
+  			changeColor.style.color = "red";
+
+  		var class2 = document.getElementsByTagName('li')[1];
+  			class2.setAttribute('class', 'listitem');
+  		var changeColor2 = document.getElementsByClassName('listitem')[1];
+
+  			changeColor2.style.color = "red";
+
+  		var class3 = document.getElementsByTagName('li')[2];
+  			class3.setAttribute('class', 'listitem');
+  		var changeColor3 = document.getElementsByClassName('listitem')[2];
+
+  			changeColor3.style.color = "red";
+
+  		var newImg = document.createElement('img');
+  			document.body.appendChild(newImg);
+  	
+  			newImg.setAttribute('src', 'myavatar.png');
+  			newImg.setAttribute('width', '250');
+  			newImg.setAttribute('height', '250');
+
+  </script>
+ </body>
+
+</html>
+

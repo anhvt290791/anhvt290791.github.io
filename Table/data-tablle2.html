@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<title>Data Table</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script
+	src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Data Table</h1>
+	<div class="table-wrapper">
+		<table>
+			<thead>
+				<th>Profile_immage</th>
+				<th onclick="btnName()">Display_name
+					<i class="fa fa-caret-down"></i></th>
+					<th>reputation</th>
+					<th>website_url
+
+					</th>
+					<th>Creation_date</th>
+
+
+				</thead>
+				<tbody>
+					<script type="text/javascript">
+						let users = []
+						function getDataUsers(){
+							$.ajax({
+								url: "http://localhost:3000/items",
+
+								success: function( data ) {
+									console.log(data);
+									users = data;
+
+									users.sort(compareReputation);
+
+									render(data);
+
+
+								}
+							});
+						}
+						getDataUsers()
+
+						function render(data){
+							const tbody = document.getElementsByTagName('tbody')[0]
+							tbody.innerHTML = ""
+							for(let i=0; i< data.length; i++){
+								const user =data[i]
+								let tr = document.createElement('tr')
+								let creation_date = new Date(user.creation_date*1000)
+
+								tr.innerHTML = `<tr>
+								<td>
+									<img src="${user.profile_image}"/>
+								</td>
+								<td>
+									<a href="${user.link}">${user.display_name}</a>
+								</td>
+								<td>
+									<p>${user.reputation}</p>
+								</td>
+								<td>
+									<p>${user.website_url}</p>
+								</td>
+								<td>
+									${creation_date.toLocaleString('vi')}
+								</td>
+							</tr>
+							`
+
+							tbody.appendChild(tr)
+						}
+
+					}
+					function btnName(){
+						
+						function compare(a,b){
+							let displayNameA = a.display_name.toLowerCase();
+							let displayNameB = b.display_name.toLowerCase();
+							if(displayNameA < displayNameB){
+								return -1
+							}
+							if(displayNameA > displayNameB){
+								return 1
+							}
+							if(displayNameA = displayNameB){
+								return 0
+							}
+
+
+						}
+
+						users.sort(compare)
+							console.log(users)
+							
+							render(users)
+					}
+
+
+
+					function compareReputation(a,b){
+						let displayReputationA = a.reputation;
+						let displayReputationB = b.reputation;
+						return displayReputationB-displayReputationA;
+					// if(displayReputationA < displayReputationB){
+					// 	return 1;
+					// }
+					// if(displayReputationA > displayReputationB){
+					// 	return -1;
+					// }
+					// if(displayReputationA = displayReputationB){
+					// 	return 0;
+					// }
+				}
+				users.sort(compareReputation)
+				
+			</script>
+		</tbody>
+	</table>
+</div>

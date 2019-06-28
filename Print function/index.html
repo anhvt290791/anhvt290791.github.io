@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Print PDF using inline iFrame</title>
+</head>
+<body>
+    <h1>Print this image</h1>
+    <img 
+        src="http://osxdaily.com/wp-content/uploads/2009/11/delete-pages-in-pdf.JPG" id="myFrame" 
+         
+        width="300" height="300">
+    <p>
+        <input type="button" id="bt" onclick="pagePrint()" value="Print PDF" />
+    </p>
+</body>
+
+<script>
+    function pagePrint() {
+        
+        window.print();
+       
+    }
+</script>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<title>Data Table</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Data Table</h1>
+<div class="table-wrapper">
+	<table>
+		<thead>
+			<th>Profile_immage</th>
+			<th>Display_name</th>
+			<th>reputation</th>
+			<th>website_url</th>
+			<th>Creation_date</th>
+			
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+$.ajax({
+  url: "http://localhost:3000/items",
+  
+  success: function( users ) {
+    console.log(users)
+    
+    render(users)
+  }
+});
+	function render(users){
+		const tbody = $('tbody')
+		console.log(tbody[0])
+		for (let i = 0; i< users.length; i++){
+			const user = users[i];
+			let tr = $('<tr></tr>')
+			tbody.append(tr)
+			//profile image
+
+			let profile_image_td = $('<td></td>')
+			let profile_image = $('<img/>')
+			profile_image.attr('src', user.profile_image)
+			profile_image_td.append(profile_image)
+			tr.append(profile_image_td)
+
+			//display name
+
+			let display_name_td = $('<td></td>')
+			let display_name = $('<a></a>')
+			display_name.attr("href", user.link)
+			display_name.attr("title", user.link)
+			display_name.text(user.display_name)
+			display_name_td.append(display_name)
+			tr.append(display_name_td)
+		
+		//reputation
+
+		let reputation_td = $('<td></td>')
+		reputation = $('<p></p>')
+		reputation.text(user.reputation)
+		reputation_td.append(reputation)
+		tr.append(reputation_td)
+
+		//website_url
+		let webUrl_td = $('<td></td>')
+		let webUrl = $('<a></a>')
+		webUrl.attr("href", user.website_url)
+		webUrl.attr("title", user.website_url)
+		webUrl.text(user.website_url)
+		webUrl_td.append(webUrl)
+		tr.append(webUrl_td)
+
+		//creation date
+
+		let creation_date_td = $('<td></td>')
+		// var timestamp = context.getVariable("system.timestamp");
+		var mydate = new Date(user.creation_date*1000);
+		// var isoDate = mydate.toString('dddd MMM yyyy h:mm:ss');
+		// context.setVariable("isoDate", isoDate);
+		// let creation_date = $('<p></p>')
+		creation_date_td.text(mydate.toLocaleString())
+
+		// creation_date_td.append(creation_date)
+		tr.append(creation_date_td)
+	}
+	}
+</script>
+</body>
+
+	
+
+</html>

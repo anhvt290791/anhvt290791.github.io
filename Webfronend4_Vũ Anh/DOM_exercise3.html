@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>My Books List</title>
+</head>
+<body>
+  <h1>My Books List</h1>
+  <script>
+  	var arr = [];
+  	arr.push({	title: 'Mechanical Engineering: Conventional and Objective Types',
+   				author: 'R.S. Khurmi',
+   				thumbnail: 'https://images-na.ssl-images-amazon.com/images/I/511Gu98SzJL._SX354_BO1,204,203,200_.jpg',
+   				alreadyRead: true
+  },);
+  	arr.push({	title: 'Kahlil Gibran: Collected Works of Kahlil Gibran (DELUXE EDITION)',
+   				author: 'Kahlil Gibran',
+   				thumbnail: 'https://images-na.ssl-images-amazon.com/images/I/513j22--qOL._SX324_BO1,204,203,200_.jpg3/33/The_Design_of_Everyday_Things_%28cover_1988%29.jpg',
+   				alreadyRead: false
+  },)
+  		var n= "";
+  		var body=document.getElementsByTagName('body')[0];
+  		body.setAttribute("id", "style");
+  		var row = 0;
+  		var column = 0;
+  		var image = "";
+  for (let i=0; i<arr.length ; i++){
+	 	n = i + n;
+	 	var book =document.createElement('div');
+	 	book.setAttribute("id", n);
+
+	 	document.getElementById('style').appendChild(book);
+	 	row=document.createElement('p');
+	 	column=document.createTextNode(arr[i].title);
+	 	row.appendChild(column);
+	 	document.getElementById(n).appendChild(row);
+	 	row=document.createElement("p");
+	 	column=document.createTextNode(arr[i].author);
+	 	row.appendChild(column);
+	 	document.getElementById(n).appendChild(row);
+	 	image=document.createElement("img");
+	 	image.setAttribute("src",arr[i].thumbnail)
+	 	document.getElementById(n).appendChild(image);
+
+	 	if(arr[i].alreadyRead == true){
+	 		document.getElementById(n).style.backgroundColor = "pink";
+	 		document.getElementById(n).style.color = "white";
+	 	}
+	 }
+		
+  </script>
+ </body>
+</html>

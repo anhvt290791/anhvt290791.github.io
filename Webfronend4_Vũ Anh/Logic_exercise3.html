@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Số nguyên tố</title>
+</head>
+<body>
+    <h1>Số nguyên tố</h1>
+    <script>
+    
+    	
+      function primeNumberList(a) {
+          for (let i = 1; i <= a; i++) {
+            let isPrimeNumber = true;
+            if (i == 2) {
+              isPrimeNumber = true;
+            } else if (i % 2 == 0) {
+              isPrimeNumber = false;
+            } else {
+                for (let j = 2; j < i; j++) {
+                    if (i % j == 0) {
+                    isPrimeNumber = false;
+                    break;
+                    }
+                }
+            }
+
+      if (isPrimeNumber == true) {
+          document.write(+i+ '</br>');
+      }
+            }
+}
+    
+    primeNumberList(1000);
+    </script>
+</body>
+</html>
