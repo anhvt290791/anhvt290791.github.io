@@ -1,0 +1,32 @@
+* {
+	box-sizing: border-box;
+}
+
+.row img {
+	border: 5px;
+	border-style: solid;
+	border-color: pink;
+	border-radius: 20px;
+	transition: all 0.5s linear;
+
+}
+.img2-responsive{
+	width: 212px;
+	height: 120px;
+}
+
+.row img:hover {
+	transform: scale(1.1);
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	background-color: #e7e7e7;
+}
+
+.row h3 {
+	text-align: center;
+}
+.col-sm-3, .col-xs-3{
+	height: 200px;
+
+}

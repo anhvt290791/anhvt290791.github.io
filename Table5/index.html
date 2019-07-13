@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Data Table</h1>
+	<div class="wrapper">
+		<table>
+			<thead>
+				<th>Profile Image</th>
+				<th class="1" order="0" value = "display_name" onclick="sort(this)">
+					Display Name
+					<span class="asc"><i class="fas fa-sort-up"></i></span>
+					<span class="desc"><i class="fas fa-sort-down"></i><span>
+				</th>
+				<th class="2" order="0" value="user_id" onclick="sort(this)">User ID
+					<span class="asc"><i class="fas fa-sort-up"></i></span>
+					<span class="desc"><i class="fas fa-sort-down"></i><span>
+				</th>
+				<th>Website</th>
+				<th class="3" order="0" value="creation_date" onclick="sort(this)">Creation Date
+					<span class="asc"><i class="fas fa-sort-up"></i></span>
+					<span class="desc"><i class="fas fa-sort-down"></i><span>
+				</th>
+			</thead>
+			<tbody id="element"></tbody>
+		</table>
+	</div>
+<script>
+
+	let users = []
+	$.ajax({
+		url: "http://localhost:3000/items",
+		success: function (data){
+			users = data;
+			render(data);
+			console.log(data);
+		}
+	});
+
+	//Write render function
+
+	function render(data) {
+		let content = "";
+		for (let i=0; i<users.length; i++){
+			const user = users[i];
+			content+= `<tr>
+				<td>
+					<img src="${user.profile_image}" />
+				</td>
+				<td>
+				<a href="${user.link}">${user.display_name}</a>
+				</td>
+				<td>
+				${user.user_id}
+				</td>
+				<td>
+					<a href="website_url">${user.website_url}</a>
+				</td>
+				<td>
+				${new Date(user.creation_date*1000).toLocaleString()}
+				</td>
+			</tr>
+
+			`
+		}
+		$('#element').html(content)
+	}
+
+	//Write function Sort by thElement
+
+	function sort(th){
+		let thElement = $(th);
+		let name = thElement.attr('value');
+
+		let asc = $('.asc');
+		let desc = $('.desc');
+		//CSS for asc and desc class:
+
+		asc.css('opacity', '0.5');
+		desc.css('opacity', '0.5');
+		$('.1').attr('order', '0');
+		$('.2').attr('order', '0');
+		$('.3').attr('order', '0');
+		
+
+		//Check for selecting column and order
+
+		switch(thElement.attr('order')){
+			case '0':
+			thElement.attr('order', '1');
+
+			thElement.find('.desc').css('opacity', '1');
+			
+			
+
+			if(name === 'display_name'){
+				users.sort(function(a, b){
+					return a.display_name.localeCompare(b.display_name)
+				})
+			}
+			if(name === 'user_id'){
+				users.sort(function(a, b){
+					return a.user_id - b.user_id;
+				})
+
+		}
+			if(name === 'creation_date'){
+				users.sort(function(a, b){
+					return a.creation_date - b.creation_date;
+				})
+	}
+			render(users);
+			break;
+			case '1':
+			thElement.attr('order', '0');
+			thElement.find('.asc').css('opacity', '1');
+			
+			
+			if(name === 'display_name'){
+				users.sort(function(a, b){
+					return b.display_name.localeCompare(a.display_name)
+				})
+			}
+			if(name === 'user_id'){
+				users.sort(function(a, b){
+					return b.user_id - a.user_id;
+				})
+
+		}
+			if(name === 'creation_date'){
+				users.sort(function(a, b){
+					return b.creation_date - a.creation_date;
+				})
+	}
+			render(users);
+			break;
+
+	}
+}
+</script>
+</body>
+</html>
