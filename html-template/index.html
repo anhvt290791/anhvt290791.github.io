@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    
+      <section class="container">
+        <div class="promotion">
+          <label for="promo-code">Have A Promo Code?</label>
+          <input type="text" id="promo-code" /> <button type="button"></button>
+        </div>
+
+        <div class="summary">
+          <ul>
+            <li>Subtotal <span>$21.97</span></li>
+            <li>Tax <span>$5.00</span></li>
+            <li class="total">Total <span>$26.97</span></li>
+          </ul>
+        </div>
+
+        <div class="checkout">
+          <button type="button">Check Out</button>
+        </div>
+        
+      </section>
+    
+    <div id="root"></div>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <script type="text/babel" src="js/header.js"></script>
+    <script type="text/babel" src="js/products.js"></script>
+    <script type="text/babel">
+    ReactDOM.render(
+      <main>
+      <MyHeader />
+      <Products />
+      </main>,
+  document.getElementById('root')
+    );
+    </script>
+  </body>
+</html>
