@@ -1,52 +1,16 @@
 class Products extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      products: [
-        {
-          name: "PRODUCT ITEM NUMBER 1",
-          image: "https://via.placeholder.com/200x150",
-          description: "Description for product item number 1",
-          price: 59999999,
-          quantity: 2
-        },
-        {
-          name: "PRODUCT ITEM NUMBER 2",
-          image: "https://via.placeholder.com/200x150",
-          description: "Description for product item number 2",
-          price: 9999999,
-          quantity: 1
-        },
-        {
-          name: "PRODUCT ITEM NUMBER 3",
-          image: "https://via.placeholder.com/200x150",
-          description: "Description for product item number 3",
-          price: 1234567800,
-          quantity: 1
-        },
-        {
-          name: "PRODUCT ITEM NUMBER 4",
-          image: "https://via.placeholder.com/200x150",
-          description: "Description for product item number 4",
-          price: 9.99,
-          quantity: 1
-        },
-        {
-          name: "PRODUCT ITEM NUMBER 5",
-          image: "https://via.placeholder.com/200x150",
-          description: "Description for product item number 5",
-          price: 9.99,
-          quantity: 1
-        }
-      ]
-    };
+  
   }
-
+  
+  
   render() {
-    const product = this.state.products.map(product => {
+    
+    const product = this.props.products.map(product => {
 
     return (
-      <li className="row">
+      <li className="row" key={product.id}>
         <div className="col left">
           <div className="thumbnail">
             <a href="#">
@@ -87,8 +51,10 @@ class Products extends React.Component {
               viewBox="0 0 60 60"
               enableBackground="new 0 0 60 60"
               xmlSpace="preserve"
+              onClick={this.props.onRemove.bind(this, product.id)}
             >
               <polygon points="38.936,23.561 36.814,21.439 30.562,27.691 24.311,21.439 22.189,23.561 28.441,29.812 22.189,36.064 24.311,38.186 30.562,31.934 36.814,38.186 38.936,36.064 32.684,29.812"></polygon>
+              
             </svg>
           </div>
         </div>

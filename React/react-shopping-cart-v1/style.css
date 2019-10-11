@@ -293,6 +293,7 @@ header .count {
 @media all and (max-width: 599px) {
   .thumbnail img {
     display: none;
+    margin-top: 20px;
   }
 
   .quantity>input {
@@ -325,6 +326,7 @@ header .count {
 
   .thumbnail {
     width: 35%;
+    margin-top: 25px;
   }
 
   .detail {
