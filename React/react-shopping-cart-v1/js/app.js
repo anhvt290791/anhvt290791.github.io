@@ -56,23 +56,24 @@ class App extends React.Component {
     //   products: newProduct
     // });
 
-    const newProduct = this.props.products.filter(product=> product.id !== id)
+    const newProduct = this.state.products.filter(product=> product.id !== id)
     if (window.confirm('Are you sure you wish to delete this item?')){
     this.setState({products: newProduct})
     }
     }
     
-    calculateTotalQuantity() {
+    calculateTotalQuantity = () =>{
       let totalQuantity = 0;
       this.state.products.forEach(function (product) {
         totalQuantity += +parseFloat(product.quantity);
       });
       
       // this.setState({
-      //   "totalQuantity": totalQuantity
+      //   newProduct: totalQuantity
         
       // });
       console.log(totalQuantity);
+      
     }
    
     
