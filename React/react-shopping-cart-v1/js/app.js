@@ -45,9 +45,10 @@ class App extends React.Component {
         }
       ]
     };
+    this.handleChange = this.handleChange.bind(this);
   }
-  removeProduct(id){
-    
+  removeProduct(id) {
+
     // console.log(id);
     // const newProduct = this.state.products.filter(product => {
     //   return product.id !== id;
@@ -56,37 +57,63 @@ class App extends React.Component {
     //   products: newProduct
     // });
 
-    const newProduct = this.state.products.filter(product=> product.id !== id)
-    if (window.confirm('Are you sure you wish to delete this item?')){
-    this.setState({products: newProduct})
+    const newProduct = this.state.products.filter(product => product.id !== id)
+    if (window.confirm('Are you sure you wish to delete this item?')) {
+      this.setState({ products: newProduct })
     }
-    }
-    
-    calculateTotalQuantity = () =>{
-      let totalQuantity = 0;
-      this.state.products.forEach(function (product) {
-        totalQuantity += +parseFloat(product.quantity);
-      });
-      
-      // this.setState({
-      //   newProduct: totalQuantity
+  }
+
+
+  calculateTotalQuantity() {
+    let totalQuantity = 0;
+    this.state.products.forEach(function (product) {
+      totalQuantity += +parseInt(product.quantity);
+
+
+    });
+
+    return totalQuantity;
+  }
+
+
+  handleChange(id, event) {
+
+    const value = event.target.value;
+    let newProducts = this.state.products.map(x => {
+      if (x.id == id) {
         
-      // });
-      console.log(totalQuantity);
-      
-    }
-   
-    
-    render() {
-      return (
-        <section className="container">
-          <MyHeader calculateTotalQuantity={this.calculateTotalQuantity()}/>
-          <Products products={this.state.products} onRemove={this.removeProduct.bind(this)}/>
-          <Checkout />
-        </section>
-      );
-    }
-    }
-  
-  
-  
+          x.quantity = Number(value);
+          
+        
+        
+        
+      }
+      return x;
+
+
+    });
+
+
+    this.setState({
+      products: newProducts
+
+    });
+
+  }
+
+
+
+  render() {
+    const calculateTotalQuantity = this.calculateTotalQuantity();
+    console.log(calculateTotalQuantity);
+    return (
+      <section className="container">
+        <MyHeader calculateTotalQuantity={calculateTotalQuantity} />
+        <Products products={this.state.products} onRemove={this.removeProduct.bind(this)} handleChange={this.handleChange.bind(this)} />
+        <Checkout />
+      </section>
+    );
+  }
+}
+
+

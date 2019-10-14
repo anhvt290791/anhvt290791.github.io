@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="image/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Kanbard</title>
+</head>
+
+<body class="body">
+    <header>
+        <div class="background-header center">
+            <div class="logo-text">
+                Kanbard
+            </div>
+        </div>
+    </header>
+
+    <main class="container-wrapper">
+        <div class="list">
+            <div class="list-slot"></div>
+            <div class="add-new-card" onclick="kanbard.addNewList(event, this)">
+                <i class="fas fa-plus-circle"></i>
+                <div class="add-new-task">
+                    Add new list ...
+                </div>
+            </div>
+        </div>
+
+        <div id="delete-task-modal" class="modal">
+            <div class="modal-content">
+                <h4>Delete confirm</h4>
+                <p>Are you sure to delete this task?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-gray btn-flat gray">Cancel</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat green  darken-3" id="modal-delete-btn">Delete</a>
+            </div>
+        </div>
+
+        <div id="edit-task-modal" class="modal">
+            <div class="modal-content">
+                <h4>Edit task</h4>
+                <div class="edit-content-box">
+
+                    <textarea type="text" class="edit-content" onkeyup="newTaskContentBox(this)" autofocus value="value text"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-gray btn-flat gray">Cancel</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat green  darken-3" id="modal-save-btn">Save</a>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+body {
+	background: url(../image/background.jpg);
+}
+
+.content-container {
+	max-width: 1000px;
+	margin: auto;
+	position: relative;
+	margin-left: 400px;
+}
+
+h1, h2 {
+	color: #e4caac;
+	font-size: auto;
+}
+
+div.header-image {
+	box-sizing: border-box;
+	text-align: center;
+}
+
+div.header-image img {
+	max-width: 100%;
+}
+
+.back-to-top {
+	position: fixed;
+	right: 50px;
+	bottom: 30px;
+}

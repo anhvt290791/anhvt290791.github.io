@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <title>QLSV - Danh sách học viên</title>
+
+    <style>
+        .deleting {
+            background-color: rgb(243, 131, 131) !important;
+            transition: all 0.5s ease;
+        }
+
+        .table thead th {
+            border-bottom: none;
+        }
+
+        th {
+            min-width: 200px;
+            cursor: pointer;
+        }
+
+        th:last-child {
+            cursor: auto;
+        }
+
+        td {
+            max-width: 200px;
+            word-break: break-word;
+        }
+
+        .sort-icons {
+            position: relative;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .sort-icon {
+            position: absolute;
+            top: 2px;
+            left: 0px;
+            opacity: 0.5;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        /* Spinner */
+
+        .spinner:before {
+            transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
+            animation: 750ms rotateBefore infinite linear reverse;
+        }
+
+        .spinner:after {
+            transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
+            animation: 750ms rotateAfter infinite linear;
+        }
+
+        .spinner:before,
+        .spinner:after {
+            box-sizing: border-box;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3em;
+            height: 3em;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%);
+            transform-origin: 50%;
+            transform: rotateY(50%);
+            perspective-origin: 50% 50%;
+            perspective: 340px;
+            background-size: 3em 3em;
+            background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
+        }
+
+        @keyframes rotateBefore {
+            from {
+                transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+            }
+        }
+
+        @keyframes rotateAfter {
+            from {
+                transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+            }
+        }
+
+        .spinner-wrapper-1, .spinner-wrapper {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header d-flex align-items-center">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addNewStudent">+ Thêm học viên</button>
+            <h1 class="text-center m-4" style="width: 70%">Danh sách học viên</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="name-col field-col" onclick="studentSort(this)">Họ tên <span class="sort-icons"><i
+                                    class="fas fa-sort-up sort-icon"></i><i
+                                    class="fas fa-sort-down sort-icon"></i></span></th>
+                        <th class="birth-year-col field-col" style="min-width: 150px" onclick="studentSort(this)">Năm
+                            sinh <span class="sort-icons"><i class="fas fa-sort-up sort-icon"></i><i
+                                    class="fas fa-sort-down sort-icon"></i></span></th>
+                        <th class="email-col field-col" onclick="studentSort(this)">Email <span class="sort-icons"><i
+                                    class="fas fa-sort-up sort-icon"></i><i
+                                    class="fas fa-sort-down sort-icon"></i></span></th>
+                        <th class="phone-col field-col" onclick="studentSort(this)">Số điện thoại <span
+                                class="sort-icons"><i class="fas fa-sort-up sort-icon"></i><i
+                                    class="fas fa-sort-down sort-icon"></i></span></th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="spinner-wrapper">
+        </div>
+    </div>
+
+    <!-- Edit modal -->
+    <div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="editStudentLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editStudentLabel">Sửa thông tin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="studentNameEdit">Họ tên</label>
+                        <input type="text" class="form-control" id="studentNameEdit">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentBirthYearEdit">Năm sinh</label>
+                        <input type="text" class="form-control" id="studentBirthYearEdit">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmailEdit">Email</label>
+                        <input type="email" class="form-control" id="studentEmailEdit">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentPhoneEdit">Số điện thoại</label>
+                        <input type="text" class="form-control" id="studentPhoneEdit">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary save-data" onclick="saveStudentInfo()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add new modal -->
+    <div class="modal fade" id="addNewStudent" tabindex="-1" role="dialog" aria-labelledby="addNewStudentLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewStudentLabel">Nhập thông tin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="studentNameNew">Họ tên</label>
+                        <input type="text" class="form-control" id="studentNameNew">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentBirthYearNew">Năm sinh</label>
+                        <input type="text" class="form-control" id="studentBirthYearNew">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmailNew">Email</label>
+                        <input type="email" class="form-control" id="studentEmailNew">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentPhoneNew">Số điện thoại</label>
+                        <input type="text" class="form-control" id="studentPhoneNew">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary save-data" onclick="addNewStudent()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let rawData = []
+        let convertedData = undefined;
+        let currentId = "";
+        function renderContent() {
+            let isLoading = true;
+            loadingStatus(isLoading);
+
+            $.ajax({
+                url: "https://student-rest-api.firebaseapp.com/api/v1/students",
+                method: "GET"
+            }).done(function (result) {
+                isLoading = false;
+                loadingStatus(isLoading)
+                rawData = result.students;
+                convertedData = convertData(rawData)
+                students = sortByTime(convertedData)
+                render(students)
+            });
+        }
+
+        function render(data) {
+            let htmlContent = '';
+            for (let i in data) {
+                const s = data[i];
+
+                htmlContent += `
+                    <tr>
+                        <td>${s.name || ''}</td>
+                        <td style="max-width: 100px">${s.birthYear || ''}</td>
+                        <td>${s.email || ''}</td>
+                        <td>${s.phone || ''}</td>
+                        <td>
+                            <a href="javascript:void(0)" class="text-danger delete-text-btn" id=${s.id} onclick="deleteStudent(this)">
+                                <i class="fa fa-trash-alt"></i> Xóa
+                            </a>
+                            <a href="javascript:void(0)" class="text-secondary edit-text-btn ml-3" id=${s.id} onclick="editStudent(this)" data-toggle="modal" data-target="#editStudent">
+                                <i class="fa fa-pen-alt"></i> Sửa
+                            </a>
+                        </td>
+                    </tr>
+                `
+            }
+            $('tbody').html(htmlContent);
+        }
+
+        function deleteStudent(target) {
+            let id = $(target).attr('id');
+            if (confirm("Are you sure?")) {
+                // Chống bấm liên tục
+                let isLoading = true;
+                $(target).parent().parent().addClass('deleting');
+                setTimeout(function () {
+                    $(target).parent().parent().removeClass('deleting');
+                    $(target).parent().parent().remove();
+                    loadingStatus(isLoading);
+                }, 200)
+                $.ajax({
+                    url: `https://student-rest-api.firebaseapp.com/api/v1/students/${id}`,
+                    method: "DELETE"
+                }).done(function (result) {
+                    isLoading = false;
+                    loadingStatus(isLoading)
+                })
+            }
+        }
+
+        function editStudent(target) {
+            let id = $(target).attr('id');
+            let currentStudent = students.find(student => student['id'] == id)
+            $('#studentNameEdit').val(currentStudent['name'])
+            $('#studentBirthYearEdit').val(currentStudent['birthYear'])
+            $('#studentEmailEdit').val(currentStudent['email'])
+            $('#studentPhoneEdit').val(currentStudent['phone'])
+            currentId = id;
+        }
+
+        function saveStudentInfo() {
+            let isLoading = true;
+            let studentName = $('#studentNameEdit');
+            let studentBirthYear = $('#studentBirthYearEdit');
+            let studentEmail = $('#studentEmailEdit');
+            let studentPhone = $('#studentPhoneEdit');
+            let isValid = [];
+
+            // Validate checking
+            isValid.push(studentBirthYearValidate(studentBirthYear),
+                studentNameValidate(studentName),
+                studentEmailValidate(studentEmail),
+                studentPhoneValidate(studentPhone))
+
+            if (!isValid.includes(false)) {
+                $('#editStudent').modal('hide')
+                loadingStatus(isLoading);
+
+                $.ajax({
+                    url: `https://student-rest-api.firebaseapp.com/api/v1/students/${currentId}`,
+                    method: "PUT",
+                    data: {
+                        name: $('#studentNameEdit').val(),
+                        birthYear: $('#studentBirthYearEdit').val(),
+                        email: $('#studentEmailEdit').val(),
+                        phone: $('#studentPhoneEdit').val()
+                    }
+                }).done(function (result) {
+                    isLoading = false;
+                    loadingStatus(isLoading)
+                    renderContent()
+                })
+            }
+        }
+
+        function addNewStudent() {
+            let isLoading = true;
+            let studentName = $('#studentNameNew');
+            let studentBirthYear = $('#studentBirthYearNew');
+            let studentEmail = $('#studentEmailNew');
+            let studentPhone = $('#studentPhoneNew');
+            let isValid = [];
+
+            // Validate checking
+            isValid.push(studentBirthYearValidate(studentBirthYear),
+                studentNameValidate(studentName),
+                studentEmailValidate(studentEmail),
+                studentPhoneValidate(studentPhone))
+
+            if (!isValid.includes(false)) {
+                $('#addNewStudent').modal('hide')
+                loadingStatus(isLoading)
+                $.ajax({
+                    url: `https://student-rest-api.firebaseapp.com/api/v1/students`,
+                    method: "POST",
+                    data: {
+                        name: $('#studentNameNew').val(),
+                        birthYear: $('#studentBirthYearNew').val(),
+                        email: $('#studentEmailNew').val(),
+                        phone: $('#studentPhoneNew').val()
+                    }
+                }).done(function (result) {
+                    isLoading = false;
+                    loadingStatus(isLoading)
+                    renderContent()
+                })
+            }
+        }
+
+        $('#addNewStudent').on('hidden.bs.modal', function () {
+            $(this).find('input').val('');
+            $(this).find('.invalid-feedback').text('').hide()
+        })
+
+        $('#editStudent').on('hidden.bs.modal', function () {
+            $(this).find('input').val('');
+            $(this).find('.invalid-feedback').text('').hide()
+        })
+
+        // Validates
+
+        // Student name validate
+
+        function studentNameValidate(data) {
+            let isValid = true;
+            if (data.val() == "") {
+                data.next().show()
+                data.next().text('Họ tên không được để trống')
+                isValid = false;
+            } else {
+                data.next().hide()
+                data.next().text('')
+            }
+            return isValid;
+        }
+
+        // Student birth year validate
+
+        function studentBirthYearValidate(data) {
+            let isValid = true;
+            if (data.val() == "") {
+                data.next().show()
+                data.next().text('Năm sinh không được để trống')
+                isValid = false;
+            } else if (data.val().match(/^\d{4}$/) === null) {
+                data.next().show()
+                data.next().text('Ngày sinh không đúng định dạng')
+                isValid = false;
+            } else {
+                data.next().hide()
+                data.next().text('')
+            }
+            return isValid;
+        }
+
+        // Student email validate
+
+        function studentEmailValidate(data) {
+            let isValid = true;
+            if (data.val() == "") {
+                data.next().show()
+                data.next().text('Email không được để trống')
+                isValid = false;
+            } else if (data.val().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/) === null) {
+                data.next().show()
+                data.next().text('Email không đúng định dạng')
+                isValid = false;
+            } else {
+                data.next().hide()
+                data.next().text('')
+            }
+            return isValid;
+        }
+
+        // Student phone validate
+
+        function studentPhoneValidate(data) {
+            let isValid = true;
+            if (data.val() == "") {
+                data.next().show()
+                data.next().text('Số điện thoại không được để trống')
+                isValid = false;
+            } else {
+                data.next().hide()
+                data.next().text('')
+            }
+            return isValid;
+        }
+
+
+        function loadingStatus(status) {
+            if (status == true) {
+                let spinner = `
+                <div class="spinner"></div>`;
+                $('.spinner-wrapper').html(spinner);
+                $('tbody').hide()
+            } else {
+                $('.spinner-wrapper').html("");
+                $('tbody').show()
+            }
+        }
+
+        function convertData(source) {
+            let arr = [];
+            let key = []
+            debugger;
+            for (let i in source) {
+                arr.push(source[i]);
+                key.push(i)
+            }
+            for (let i = 0; i < arr.length; i++) {
+                arr[i]['id'] = key[i]
+            }
+            return arr;
+        }
+
+        function sortByTime(students) {
+            return students.sort((a, b) => {
+                return a['created'] - b['created']
+            })
+        }
+
+        function studentSort(target) {
+            $('.sort-icon').removeClass('active')
+            $('.field-col').not(target).removeClass('sorted')
+
+            let isSorted = true;
+
+            if ($(target).hasClass('sorted') == false) {
+                isSorted = false
+            }
+
+
+            // Sort by Name
+            if ($(target).hasClass('name-col') && isSorted == false) {
+                students.sort(compare('name'))
+            } else if ($(target).hasClass('name-col')) {
+                students.sort(compareReverse('name'))
+            }
+
+            // Sort by Birth Year
+
+            if ($(target).hasClass('birth-year-col') && isSorted == false) {
+                students.sort(compareReverse('birthYear'))
+            } else if ($(target).hasClass('birth-year-col')) {
+                students.sort(compare('birthYear'))
+            }
+
+            // Sort by Email
+
+            if ($(target).hasClass('email-col') && isSorted == false) {
+                students.sort(compareReverse('email'))
+            } else if ($(target).hasClass('email-col')) {
+                students.sort(compare('email'))
+            }
+
+            // Sort by Phone 
+
+            if ($(target).hasClass('phone-col') && isSorted == false) {
+                students.sort(compareReverse('phone'))
+            } else if ($(target).hasClass('phone-col')) {
+                students.sort(compare('phone'))
+            }
+
+            if (isSorted == false) {
+                $(target).addClass('sorted');
+                sortIconStatus(target, status = "asc")
+            } else {
+                $(target).removeClass('sorted');
+                sortIconStatus(target, status = "desc")
+            }
+
+            render(students)
+        }
+
+        function sortIconStatus(parent, status) {
+            if (status == "asc") {
+                $(parent).find('.fa-sort-up').addClass('active')
+                $(parent).find('.fa-sort-down').removeClass('active')
+            } else {
+                $(parent).find('.fa-sort-up').removeClass('active')
+                $(parent).find('.fa-sort-down').addClass('active')
+            }
+        }
+
+        const compareReverse = (type) => (a, b) => a[type] == b[type] ? 0 : a[type] < b[type] ? -1 : 1;
+        const compare = (type) => (a, b) => a[type] == b[type] ? 0 : a[type] < b[type] ? 1 : -1;
+
+        function filterIt(arr, searchKey) {
+            var results = [];
+            for (var i = 0; i < arr.length; i++) {
+                for (key in arr[i]) {
+                    if (arr[i][key].indexOf(searchKey) != -1) {
+                        results.push(arr[i]);
+                        break;
+                    }
+                }
+                break;
+            }
+            return results
+        }
+
+        $(function () {
+            renderContent();
+        })
+    </script>
+</body>
+
+</html>

@@ -8,7 +8,7 @@ class Products extends React.Component {
   render() {
     
     const product = this.props.products.map(product => {
-
+      console.log(product)
     return (
       <li className="row" key={product.id}>
         <div className="col left">
@@ -37,7 +37,9 @@ class Products extends React.Component {
               type="number"
               className="quantity"
               step={1}
-              defaultValue={product.quantity}
+              
+              value={product.quantity} 
+              onChange={this.props.handleChange.bind(this, product.id)}
             />
           </div>
           <div className="remove">

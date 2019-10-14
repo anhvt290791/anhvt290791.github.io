@@ -6,7 +6,7 @@ function MyHeader(props) {
         <li>Home</li>
         <li>Shopping Cart bang React</li>
       </ul>
-      <span className="count">{props.calculateTotalQuantitys} items in the bag</span>
+      <span className="count">{props.calculateTotalQuantity} items in the bag</span>
     </header>
   );
 }
